@@ -235,6 +235,56 @@ class ItemScrollController {
     );
   }
 
+  void jumpByPixTo(double value) {
+    if (_scrollableListState!.primary.scrollController.hasClients)
+      return _scrollableListState!.primary.scrollController.jumpTo(value);
+    return _scrollableListState!.secondary.scrollController.jumpTo(value);
+  }
+
+  Future<void> scrollByPixTo(double value,{required Duration duration, required Curve curve}) {
+    if (_scrollableListState!.primary.scrollController.hasClients)
+      return _scrollableListState!.primary.scrollController.animateTo(value,duration: duration,curve: curve);
+    return _scrollableListState!.secondary.scrollController.animateTo(value,duration: duration,curve: curve);
+  }
+
+  double getPixOffset(){
+    if (_scrollableListState == null) return 0;
+    if (_scrollableListState!.primary.scrollController.hasClients)
+      return  _scrollableListState!.primary.scrollController.offset;
+    return _scrollableListState!.secondary.scrollController.offset;
+  }
+
+  double getMaxScrollPix(){
+    if (_scrollableListState!.primary.scrollController.hasClients)
+      return _scrollableListState!.primary.scrollController.position.maxScrollExtent;
+    return _scrollableListState!.secondary.scrollController.position.maxScrollExtent;
+  }
+
+  ItemPosition getFirstPosition() {
+    ItemPosition firstPosition = ItemPosition(index: 0, itemLeadingEdge: 0, itemTrailingEdge: 0);
+    if (_scrollableListState == null) return firstPosition;
+    if (_scrollableListState!.primary.scrollController.hasClients) {
+      double min = double.infinity;
+      _scrollableListState!.primary.itemPositionsNotifier.itemPositions.value.forEach((element) {
+        if (element.itemLeadingEdge.abs() < min) {
+          min = element.itemLeadingEdge.abs();
+          firstPosition = element;
+        }
+      });
+    }
+    else if (!_scrollableListState!.primary.scrollController.hasClients) {
+      double min = double.infinity;
+      _scrollableListState!.secondary.itemPositionsNotifier.itemPositions.value.forEach((element) {
+        if (element.itemLeadingEdge.abs() < min) {
+          min = element.itemLeadingEdge.abs();
+          firstPosition = element;
+        }
+      });
+    }
+    return firstPosition;
+  }
+
+
   void _attach(_ScrollablePositionedListState scrollableListState) {
     assert(_scrollableListState == null);
     _scrollableListState = scrollableListState;
