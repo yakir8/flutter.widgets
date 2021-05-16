@@ -376,7 +376,7 @@ class _ScrollablePositionedListState extends State<ScrollablePositionedList>
       builder: (context, constraints) {
         final cacheExtent = _cacheExtent(constraints);
         return GestureDetector(
-          onPanDown: (_) => _stopScroll(canceled: true),
+          //onPanDown: (_) => _stopScroll(canceled: true),
           excludeFromSemantics: true,
           child: Stack(
             children: <Widget>[
