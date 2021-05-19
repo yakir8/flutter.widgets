@@ -286,7 +286,7 @@ class ItemScrollController {
 
 
   void _attach(_ScrollablePositionedListState scrollableListState) {
-    assert(_scrollableListState == null);
+    if(_scrollableListState != null) _scrollableListState!.deactivate();
     _scrollableListState = scrollableListState;
   }
 
