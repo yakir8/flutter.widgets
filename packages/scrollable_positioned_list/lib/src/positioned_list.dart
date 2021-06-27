@@ -311,12 +311,13 @@ class _PositionedListState extends State<PositionedList> {
             final itemOffset = reveal -
                 viewport.offset.pixels +
                 viewport.anchor * viewport.size.height;
-            positions.add(ItemPosition(
-                index: key.value,
-                itemLeadingEdge: itemOffset.round() /
-                    scrollController.position.viewportDimension,
-                itemTrailingEdge: (itemOffset + box.size.height).round() /
-                    scrollController.position.viewportDimension));
+            if (!itemOffset.isNaN)
+              positions.add(ItemPosition(
+                  index: key.value,
+                  itemLeadingEdge: itemOffset.round() /
+                      scrollController.position.viewportDimension,
+                  itemTrailingEdge: (itemOffset + box.size.height).round() /
+                      scrollController.position.viewportDimension));
           } else {
             final itemOffset =
                 box.localToGlobal(Offset.zero, ancestor: viewport).dx;
