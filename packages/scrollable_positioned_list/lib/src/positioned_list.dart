@@ -2,16 +2,15 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/widgets.dart';
 
+import 'scroll_view.dart';
 import 'element_registry.dart';
 import 'item_positions_listener.dart';
 import 'item_positions_notifier.dart';
-import 'scroll_view.dart';
 
 /// A list of widgets similar to [ListView], except scroll control
 /// and position reporting is based on index rather than pixel offset.
@@ -295,7 +294,7 @@ class _PositionedListState extends State<PositionedList> {
   void _schedulePositionNotificationUpdate() {
     if (!updateScheduled) {
       updateScheduled = true;
-      SchedulerBinding.instance!.addPostFrameCallback((_) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
         if (registeredElements.value == null) {
           updateScheduled = false;
           return;

@@ -2,13 +2,11 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:pedantic/pedantic.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:scrollable_positioned_list/src/scroll_view.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 const screenHeight = 400.0;
 const screenWidth = 400.0;

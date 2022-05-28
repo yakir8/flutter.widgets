@@ -2,18 +2,17 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'dart:async';
 import 'dart:math';
+import 'dart:async';
 
-import 'package:collection/collection.dart' show IterableExtension;
-import 'package:flutter/foundation.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:collection/collection.dart' show IterableExtension;
 
-import 'item_positions_listener.dart';
-import 'item_positions_notifier.dart';
 import 'positioned_list.dart';
 import 'post_mount_callback.dart';
+import 'item_positions_listener.dart';
+import 'item_positions_notifier.dart';
 
 /// Number of screens to scroll when scrolling a long distance.
 const int _screenScrollCount = 2;
@@ -473,7 +472,7 @@ class _ScrollablePositionedListState extends State<ScrollablePositionedList>
     }
     if (_isTransitioning) {
       _stopScroll(canceled: true);
-      SchedulerBinding.instance!.addPostFrameCallback((_) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
         _startScroll(
           index: index,
           alignment: alignment,
@@ -520,7 +519,7 @@ class _ScrollablePositionedListState extends State<ScrollablePositionedList>
       final startCompleter = Completer<void>();
       final endCompleter = Completer<void>();
       startAnimationCallback = () {
-        SchedulerBinding.instance!.addPostFrameCallback((_) {
+        SchedulerBinding.instance.addPostFrameCallback((_) {
           startAnimationCallback = () {};
 
           opacity.parent = _opacityAnimation(opacityAnimationWeights).animate(
