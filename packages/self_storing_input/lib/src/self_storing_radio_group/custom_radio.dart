@@ -38,7 +38,7 @@ class CustomRadio extends StatelessWidget {
         child: Icon(
           icon,
           color: isSelected && isEnabled
-              ? Theme.of(context).accentColor
+              ? Theme.of(context).colorScheme.secondary
               : Theme.of(context).disabledColor,
         ),
       ),
@@ -54,7 +54,7 @@ class CustomRadio extends StatelessWidget {
   void _showOverlay(BuildContext context) {
     state!.closeOverlay();
     state!.overlay = _buildOverlay(context);
-    Overlay.of(context)!.insert(state!.overlay!);
+    Overlay.of(context).insert(state!.overlay!);
   }
 
   OverlayEntry _buildOverlay(BuildContext context) {

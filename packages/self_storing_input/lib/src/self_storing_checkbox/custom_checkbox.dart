@@ -41,7 +41,7 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
   void _showOverlay() {
     widget.state.overlayController.close();
     _overlay = _buildOverlay(context);
-    Overlay.of(context)!.insert(_overlay!);
+    Overlay.of(context).insert(_overlay!);
   }
 
   void _closeOverlay() {
@@ -87,7 +87,7 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
       onChanged: isEnabled ? _onValueChanged : null,
       value: _localValue,
       tristate: widget.state.tristate,
-      activeColor: Theme.of(context).accentColor,
+      activeColor: Theme.of(context).colorScheme.secondary,
     );
   }
 }

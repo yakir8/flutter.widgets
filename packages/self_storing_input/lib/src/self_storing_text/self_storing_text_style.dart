@@ -7,8 +7,6 @@
 import 'package:flutter/material.dart';
 import 'package:self_storing_input/self_storing_input.dart';
 
-import '../primitives/overlay.dart';
-
 /// A style for [SelfStoringText].
 class SelfStoringTextStyle {
   final OverlayStyle overlayStyle;
@@ -17,7 +15,7 @@ class SelfStoringTextStyle {
   /// Maximum number of lines. Infinite if null.
   ///
   /// Behaves the same way as [Text.maxLines].
-  final int maxLines;
+  final int? maxLines;
 
   const SelfStoringTextStyle(
       {this.overlayStyle = const OverlayStyle.forTextEditor(),

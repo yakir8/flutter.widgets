@@ -31,15 +31,15 @@ class _DemoSaver with ChangeNotifier implements Saver<String> {
   }
 
   @override
-  OperationResult validate<T>(String itemKey, T value) {
-    if (itemKey == Fields.phrase && (value?.toString()?.length ?? 0) % 2 == 1) {
+  OperationResult validate<T>(String itemKey, T? value) {
+    if (itemKey == Fields.phrase && (value?.toString().length ?? 0) % 2 == 1) {
       return OperationResult.error('Value should have even number of letters.');
     }
     return OperationResult.success();
   }
 
   @override
-  Future<OperationResult> save<T>(String itemKey, T value) async {
+  Future<OperationResult> save<T>(String itemKey, T? value) async {
     // This delay is for demo purposes.
     await Future.delayed(delay);
     if (failSaving) {
@@ -123,8 +123,8 @@ class _DemoState extends State<Demo> {
         children: [
           Text(
             header,
-            style:
-                TextStyle(color: Theme.of(context).accentColor, fontSize: 20),
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.secondary, fontSize: 20),
           ),
           SizedBox(height: 20),
           _right(children),
@@ -137,12 +137,14 @@ class _DemoState extends State<Demo> {
   List<Widget> buildDemoHeader() {
     return [
       TextButton(
-        onPressed: () async => await launch(
-            'https://github.com/google/flutter.widgets/tree/master/packages/self_storing_input/example'),
+        onPressed: () async => await launchUrl(
+          Uri.parse(
+              'https://github.com/google/flutter.widgets/tree/master/packages/self_storing_input/example'),
+        ),
         child: Text(
           'Source Code',
           style: TextStyle(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
             decoration: TextDecoration.underline,
           ),
         ),
@@ -156,7 +158,7 @@ class _DemoState extends State<Demo> {
         controlAffinity: ListTileControlAffinity.leading,
         title: Text('Fail the save operation'),
         value: _saver.failSaving,
-        onChanged: (v) => setState(() => _saver.failSaving = v),
+        onChanged: (v) => setState(() => _saver.failSaving = v!),
       ),
       SizedBox(height: 10),
       TextFormField(
