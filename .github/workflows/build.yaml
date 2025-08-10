@@ -33,7 +33,7 @@ jobs:
     name: ${{ matrix.package }} / flutter ${{ matrix.version }}
     steps:
       - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2.4.0
+      - uses: subosito/flutter-action@v2.21.0
         with:
           channel: ${{ matrix.version }}
 
@@ -60,7 +60,7 @@ jobs:
     name: Validate .github/workflows/build.yaml
     steps:
       - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2.4.0
+      - uses: subosito/flutter-action@v2.21.0
 
       - name: dart tool/validate_actions.dart
         run: dart tool/validate_actions.dart
